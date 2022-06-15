@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/display-name */
 import clsx, { ClassValue } from 'clsx'
-import { createElement, ElementRef, forwardRef, PropsWithoutRef, RefAttributes, useRef, ComponentType } from 'react'
+import { createElement, ElementRef, forwardRef, PropsWithoutRef, RefAttributes, ComponentType } from 'react'
 import tags from './tags'
 import { cleanTemplate } from './utils/cleanTemplate'
 import { mergeArrays } from './utils/mergeArrays'
+import React from 'react'
 
 const templateTagFactory =
   <TTag extends keyof JSX.IntrinsicElements>(tag: TTag) =>

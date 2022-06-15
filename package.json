@@ -1,10 +1,10 @@
 {
   "name": "tw-tailwind",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lighter version of twin.macro that allows you to create tailwind  react components like styled-components",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.12",
+    "react": "^18.2.0",
     "typescript": "^4.7.3"
   }
 }
-
