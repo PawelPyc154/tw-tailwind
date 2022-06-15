@@ -2,7 +2,8 @@
   "name": "tw-tailwind",
   "version": "1.0.1",
   "description": "A lighter version of twin.macro that allows you to create tailwind  react components like styled-components",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
@@ -39,3 +40,4 @@
     "typescript": "^4.7.3"
   }
 }
+
