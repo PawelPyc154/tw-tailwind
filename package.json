@@ -1,0 +1,41 @@
+{
+  "name": "tailwind.components",
+  "version": "1.0.0",
+  "description": "A lighter version of twin.macro that allows you to create tailwind  react components like styled-components",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PawelPyc154/tailwind.components.git"
+  },
+  "keywords": [
+    "twin.macro",
+    "emotion",
+    "styled-components",
+    "tailwind",
+    "tailwindcss",
+    "css-in-js",
+    "react",
+    "css",
+    "tailwindcss-plugin",
+    "tailwind-css",
+    "tailwindcss-ui"
+  ],
+  "author": "Paweł Pyc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PawelPyc154/tailwind.components/issues"
+  },
+  "homepage": "https://github.com/PawelPyc154/tailwind.components#readme",
+  "dependencies": {
+    "clsx": "^1.1.1",
+    "tailwind-merge": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.12",
+    "typescript": "^4.7.3"
+  }
+}
+
