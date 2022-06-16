@@ -38,7 +38,6 @@ const templateTagFactory =
         props.children,
       )
     })
-
     Component.displayName = `tw.${tag}`
     return Component
   }
