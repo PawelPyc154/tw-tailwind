@@ -10,7 +10,7 @@ const templateTagFactory =
   <TTag extends keyof JSX.IntrinsicElements>(tag: TTag) =>
   <TTWProps extends {}>(
     template: TemplateStringsArray | ((props: JSX.IntrinsicElements[TTag] & TTWProps) => ClassValue[]),
-    ...templateElements: ((props: JSX.IntrinsicElements[TTag] & TTWProps) => string | undefined | null)[]
+    ...templateElements: ((props: JSX.IntrinsicElements[TTag] & TTWProps) => string | boolean | undefined | null)[]
   ) =>
     forwardRef<ElementRef<TTag>, JSX.IntrinsicElements[TTag] & TTWProps>((props, ref) =>
       createElement(

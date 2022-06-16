@@ -19,9 +19,8 @@ type ButtonProps = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
 }
 
 export const Button = ({ children, className, type = 'button', color = 'emerald', isLoading, ...props }: ButtonProps) => {
-  console.log(className)
   return (
-    <ButtonStyled type={type} {...props} color={color} isLoading={isLoading} className="p-4">
+    <ButtonStyled type={type} {...props} color={color} isLoading={isLoading} className={className}>
       {children}
       {isLoading && <Spinner size="sm" />}
     </ButtonStyled>

@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 
-export const cleanTemplate = (template: (string | undefined | null)[], inheritedClasses: string = '') => {
+export const cleanTemplate = (template: (string | undefined | null | boolean)[], inheritedClasses: string = '') => {
   const newClasses: string[] = template
     .join(' ')
     .trim()

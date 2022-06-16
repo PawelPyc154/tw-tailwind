@@ -5,12 +5,17 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRef } from 'react'
 import tw from 'tw-tailwind'
+import clsx from 'clsx'
+
+const borderColors = { red: tw`border-red-500`, blue: tw`border-blue-500`, green: tw`border-green-500` }
+const sharedClasses = tw`border-red-500`
 
 const Home: NextPage = () => {
   const refExample1 = useRef<HTMLDivElement>(null)
   const refExample2 = useRef<HTMLDivElement>(null)
   const refExample3 = useRef<HTMLDivElement>(null)
   const refExample4 = useRef<HTMLDivElement>(null)
+  const refExample10 = useRef<HTMLInputElement>(null)
   return (
     <div>
       <Head>
@@ -33,27 +38,44 @@ const Home: NextPage = () => {
       <Example4 ref={refExample4} hasBorder className="p-4">
         Basic function with props
       </Example4>
-      <Example5 className="p-4">Test</Example5>
+      <Example5>Component template</Example5>
       <Example6 hasBorder className="p-4">
-        Test
+        Component template with props
       </Example6>
-      <Example7 className="p-4">Test</Example7>
-      <Example8 hasBorder className="p-4">
-        Test
+      <Example7 className="p-4">Component function</Example7>
+      <Example8 hasBorder className="p-4" borderColor="green">
+        Component function with props
       </Example8>
+      <Example9 className={clsx(borderColors['red'])}>Component function with props</Example9>
+
+      <Example10 ref={refExample10} label="Components with ref" />
+      <div className={sharedClasses}></div>
     </div>
   )
 }
 
 export default Home
 
-const Example1 = tw.div`bg-red-500`
-const Example2 = tw.div<{ hasBorder: boolean }>`bg-red-500 ${({ hasBorder }) => (hasBorder ? 'border-red-500' : '')}`
+const Example1 = tw.div`bg-red-500 p-4`
+
+const Example2 = tw.div<{ hasBorder: boolean }>`bg-red-500 ${({ hasBorder }) => (hasBorder ? 'border-2 border-blue-500' : '')}`
+
 const Example3 = tw.div(() => ['bg-red-500'])
-const Example4 = tw.div<{ hasBorder: boolean }>(({ hasBorder }) => ['bg-red-500', hasBorder && 'border-red-500'])
-const Example5 = tw(Button)`bg-red-500 py-28`
-const Example6 = tw(Button)<{ hasBorder: boolean }>`bg-red-500 ${({ hasBorder }) => (hasBorder ? 'border-red-500' : '')}`
+
+const Example4 = tw.div<{ hasBorder: boolean }>(({ hasBorder }) => ['bg-red-500', hasBorder && 'border-2 border-blue-500'])
+
+const Example5 = tw(Button)`bg-red-500`
+
+const Example6 = tw(Button)<{ hasBorder: boolean }>`bg-red-500 ${({ hasBorder }) => hasBorder && 'border-2 border-blue-500'}`
+
 const Example7 = tw(Button)(() => ['bg-red-500'])
-const Example8 = tw(Button)<{ hasBorder: boolean }>(({ hasBorder }) => ['bg-red-500', hasBorder && 'border-red-500'])
-// const Example6 = tw(Input)<{ hasBorder: boolean }>``
+
+const Example8 = tw(Button)<{ hasBorder: boolean; borderColor: keyof typeof borderColors }>(({ hasBorder, borderColor }) => [
+  '!bg-red-500',
+  hasBorder && ['border-2', borderColors[borderColor]],
+])
+
+const Example9 = tw(Button)`bg-red-500 p-4`
+
+const Example10 = tw(Input)`bg-red-500 p-4`
 

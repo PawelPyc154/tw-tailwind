@@ -7,7 +7,6 @@
     "packages/*"
   ],
   "scripts": {
-    "build2": "tsc",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
@@ -25,3 +24,4 @@
   "dependencies": {},
   "packageManager": "yarn@1.22.19"
 }
+
