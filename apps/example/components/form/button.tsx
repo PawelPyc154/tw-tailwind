@@ -18,14 +18,12 @@ type ButtonProps = Omit<JSX.IntrinsicElements['button'], 'ref'> & {
   isLoading?: boolean
 }
 
-export const Button = ({ children, className, type = 'button', color = 'emerald', isLoading, ...props }: ButtonProps) => {
-  return (
-    <ButtonStyled type={type} {...props} $color={color} $isLoading={isLoading} className={className}>
-      {children}
-      {isLoading && <Spinner size="sm" />}
-    </ButtonStyled>
-  )
-}
+export const Button = ({ children, className, type = 'button', color = 'emerald', isLoading, ...props }: ButtonProps) => (
+  <ButtonStyled type={type} {...props} $color={color} $isLoading={isLoading} className={className}>
+    {children}
+    {isLoading && <Spinner size="sm" />}
+  </ButtonStyled>
+)
 
 const ButtonStyled = tw.button<{ $color: keyof typeof colors; $isLoading?: boolean }>(({ $isLoading, $color }) => [
   `disabled:opacity-30 disabled:pointer-events-none text-white font-medium rounded-md px-4 h-10 flex items-center relative select-none`,
