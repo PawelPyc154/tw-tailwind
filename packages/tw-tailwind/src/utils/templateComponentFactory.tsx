@@ -1,9 +1,10 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-unused-vars */
 import clsx, { ClassValue } from 'clsx'
 import { ComponentType, PropsWithoutRef, RefAttributes, forwardRef } from 'react'
 import { cleanTemplate } from './cleanTemplate'
 import { mergeArrays } from './mergeArrays'
 import React from 'react'
-/* eslint-disable react/display-name */
 import { twMerge } from 'tailwind-merge'
 import { ObjectWithoutPrefixDollar } from '../types/objectWithoutPrefixDollar'
 
@@ -37,8 +38,8 @@ export function templateComponentFactory<TComponentProps extends { className?: s
   return <TTWProps extends {}>(
     template: TemplateStringsArray | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => ClassValue[]),
     ...templateElements: ((props: PropsWithoutRef<TComponentProps> & TTWProps) => string | boolean | undefined | null)[]
-  ) =>
-    forwardRef<Ref, PropsWithoutRef<TComponentProps> & TTWProps>((props, ref) => {
+  ) => {
+    const Component = forwardRef<Ref, PropsWithoutRef<TComponentProps> & TTWProps>((props, ref) => {
       const filteredProps = Object.fromEntries(
         Object.entries(props).filter(([key]): boolean => key.charAt(0) !== '$'),
       ) as PropsWithoutRef<TComponentProps> & ObjectWithoutPrefixDollar<TTWProps>
@@ -61,8 +62,10 @@ export function templateComponentFactory<TComponentProps extends { className?: s
         />
       )
     })
+    Component.displayName = `tw.${Element.displayName || Element.name}`
+    return Component
+  }
 }
 const test = { test: 'string', $test: 'test' }
 
 type Fruits = typeof test
-
