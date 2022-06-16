@@ -15,5 +15,3 @@ Using [npm](http://npmjs.org/package/tw-tailwind)
 npm i tw-tailwind
 ```
 
-Test
-
