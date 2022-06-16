@@ -136,3 +136,9 @@ const elementsArray: (keyof JSX.IntrinsicElements)[] = [
 ]
 
 export default elementsArray
+
+function add(a: string, b: string): string
+
+function add(a: any, b: any): any {
+  return a + b
+}

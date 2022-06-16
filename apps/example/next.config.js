@@ -1,5 +1,10 @@
-const withTM = require("next-transpile-modules")(["ui"]);
+/** @type {import('next').NextConfig} */
+const withTM = require("next-transpile-modules")(["tw-tailwind"]);
 
-module.exports = withTM({
+const nextConfig = {
   reactStrictMode: true,
-});
+};
+
+module.exports = withTM(nextConfig);
+
+module.exports = nextConfig;
