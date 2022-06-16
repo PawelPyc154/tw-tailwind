@@ -15,7 +15,7 @@ Using [npm](http://npmjs.org/package/tw-tailwind)
 npm i tw-tailwind
 ```
 
-```
+```ts
 import { Button } from 'components/form/button'
 import { IconButton } from 'components/form/iconButton'
 import { Input } from 'components/form/input'
@@ -97,5 +97,5 @@ const Example8 = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof bo
 const Example9 = tw(Button)`bg-red-500 p-4`
 
 const Example10 = tw(Input)`bg-red-500 p-4`
-
 ```
+
