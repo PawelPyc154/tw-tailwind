@@ -19,7 +19,7 @@ const templateTagFactory =
           ...props,
           className:
             typeof template === 'function'
-              ? clsx(template(props))
+              ? clsx(template(props), props.className)
               : cleanTemplate(
                   mergeArrays(
                     template,

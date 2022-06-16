@@ -14,7 +14,7 @@ declare global {
 
 export function templateComponentFactory<
   TComponentProps extends {
-    className: string
+    className?: string
   },
   Ref = never,
 >(
@@ -26,7 +26,7 @@ export function templateComponentFactory<
 
 export function templateComponentFactory(Element: ReadonlyArray<string>): string
 
-export function templateComponentFactory<TComponentProps extends { className: string }, Ref = never>(
+export function templateComponentFactory<TComponentProps extends { className?: string }, Ref = never>(
   Element: React.ComponentType<PropsWithoutRef<TComponentProps> & RefAttributes<Ref>> | ReadonlyArray<string>,
 ) {
   if (Array.isArray(Element)) {
@@ -42,7 +42,7 @@ export function templateComponentFactory<TComponentProps extends { className: st
         {...props}
         className={
           typeof template === 'function'
-            ? clsx(template(props))
+            ? clsx(template(props), props.className)
             : cleanTemplate(
                 mergeArrays(
                   template,

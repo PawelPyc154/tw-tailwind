@@ -4,7 +4,6 @@
   "description": "A lighter version of twin.macro that allows you to create tailwind  react components like styled-components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "private": true,
   "files": [
     "dist/**/*"
   ],
@@ -39,8 +38,8 @@
     "tailwind-merge": "^1.3.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.12",
-    "react": "^18.2.0",
+    "@types/react": "18.0.13",
+    "react": "18.2.0",
     "typescript": "^4.7.3"
   }
 }

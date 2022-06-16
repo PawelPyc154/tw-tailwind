@@ -7,6 +7,7 @@
     "packages/*"
   ],
   "scripts": {
+    "build2": "tsc",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",

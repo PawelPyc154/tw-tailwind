@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 const colors = { white: tw`bg-white `, gray: tw`bg-gray-200` }
 
-type InputProps = JSX.IntrinsicElements['input'] & {
+type InputProps = Omit<JSX.IntrinsicElements['input'], 'ref'> & {
   label?: string
   icon?: ReactNode
   className?: string
