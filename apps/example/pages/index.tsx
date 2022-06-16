@@ -3,7 +3,7 @@ import { IconButton } from 'components/form/iconButton'
 import { Input } from 'components/form/input'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import tw from 'tw-tailwind'
 import clsx from 'clsx'
 
@@ -16,6 +16,7 @@ const Home: NextPage = () => {
   const refExample3 = useRef<HTMLDivElement>(null)
   const refExample4 = useRef<HTMLDivElement>(null)
   const refExample10 = useRef<HTMLInputElement>(null)
+  const [inputValue, setInputValue] = useState('')
   return (
     <div>
       <Head>
@@ -29,27 +30,27 @@ const Home: NextPage = () => {
       <Example1 ref={refExample1} className="p-4">
         Basic template
       </Example1>
-      <Example2 ref={refExample2} hasBorder className="p-4">
+      <Example2 ref={refExample2} $hasBorder className="p-4">
         Basic template with props
       </Example2>
       <Example3 ref={refExample3} className="p-4">
         Basic function
       </Example3>
-      <Example4 ref={refExample4} hasBorder className="p-4">
+      <Example4 ref={refExample4} $hasBorder className="p-4">
         Basic function with props
       </Example4>
       <Example5>Component template</Example5>
-      <Example6 hasBorder className="p-4">
+      <Example6 $hasBorder className="p-4">
         Component template with props
       </Example6>
       <Example7 className="p-4">Component function</Example7>
-      <Example8 hasBorder className="p-4" borderColor="green">
+      <Example8 $hasBorder className="p-4" $borderColor="green">
         Component function with props
       </Example8>
       <Example9 className={clsx(borderColors['red'])}>Component function with props</Example9>
 
-      <Example10 ref={refExample10} label="Components with ref" />
-      <div className={sharedClasses}></div>
+      <Example10 ref={refExample10} label="Components with ref" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+      <div className={sharedClasses}>{inputValue}</div>
     </div>
   )
 }
@@ -58,21 +59,21 @@ export default Home
 
 const Example1 = tw.div`bg-red-500 p-4`
 
-const Example2 = tw.div<{ hasBorder: boolean }>`bg-red-500 ${({ hasBorder }) => (hasBorder ? 'border-2 border-blue-500' : '')}`
+const Example2 = tw.div<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) => ($hasBorder ? 'border-2 border-blue-500' : '')}`
 
 const Example3 = tw.div(() => ['bg-red-500'])
 
-const Example4 = tw.div<{ hasBorder: boolean }>(({ hasBorder }) => ['bg-red-500', hasBorder && 'border-2 border-blue-500'])
+const Example4 = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => ['bg-red-500', $hasBorder && 'border-2 border-blue-500'])
 
 const Example5 = tw(Button)`bg-red-500`
 
-const Example6 = tw(Button)<{ hasBorder: boolean }>`bg-red-500 ${({ hasBorder }) => hasBorder && 'border-2 border-blue-500'}`
+const Example6 = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 
 const Example7 = tw(Button)(() => ['bg-red-500'])
 
-const Example8 = tw(Button)<{ hasBorder: boolean; borderColor: keyof typeof borderColors }>(({ hasBorder, borderColor }) => [
+const Example8 = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof borderColors }>(({ $hasBorder, $borderColor }) => [
   '!bg-red-500',
-  hasBorder && ['border-2', borderColors[borderColor]],
+  $hasBorder && ['border-2', borderColors[$borderColor]],
 ])
 
 const Example9 = tw(Button)`bg-red-500 p-4`

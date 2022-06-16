@@ -3,9 +3,9 @@ import { ComponentType, PropsWithoutRef, RefAttributes, forwardRef } from 'react
 import { cleanTemplate } from './cleanTemplate'
 import { mergeArrays } from './mergeArrays'
 import React from 'react'
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/display-name */
 import { twMerge } from 'tailwind-merge'
+import { ObjectWithoutPrefixDollar } from '../types/objectWithoutPrefixDollar'
 
 declare global {
   export interface ArrayConstructor {
@@ -39,9 +39,13 @@ export function templateComponentFactory<TComponentProps extends { className?: s
     ...templateElements: ((props: PropsWithoutRef<TComponentProps> & TTWProps) => string | boolean | undefined | null)[]
   ) =>
     forwardRef<Ref, PropsWithoutRef<TComponentProps> & TTWProps>((props, ref) => {
+      const filteredProps = Object.fromEntries(
+        Object.entries(props).filter(([key]): boolean => key.charAt(0) !== '$'),
+      ) as PropsWithoutRef<TComponentProps> & ObjectWithoutPrefixDollar<TTWProps>
+
       return (
         <Element
-          {...props}
+          {...filteredProps}
           className={
             typeof template === 'function'
               ? clsx(template(props), props.className)
@@ -58,4 +62,7 @@ export function templateComponentFactory<TComponentProps extends { className?: s
       )
     })
 }
+const test = { test: 'string', $test: 'test' }
+
+type Fruits = typeof test
 

@@ -1,9 +1,9 @@
 import clsx, { ClassValue } from 'clsx'
 import { forwardRef, ElementRef, createElement } from 'react'
 import tags from '../tags'
+import { ObjectWithoutPrefixDollar } from '../types/objectWithoutPrefixDollar'
 import { cleanTemplate } from './cleanTemplate'
 import { mergeArrays } from './mergeArrays'
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/display-name */
 
 const templateTagFactory =
@@ -12,11 +12,14 @@ const templateTagFactory =
     template: TemplateStringsArray | ((props: JSX.IntrinsicElements[TTag] & TTWProps) => ClassValue[]),
     ...templateElements: ((props: JSX.IntrinsicElements[TTag] & TTWProps) => string | boolean | undefined | null)[]
   ) =>
-    forwardRef<ElementRef<TTag>, JSX.IntrinsicElements[TTag] & TTWProps>((props, ref) =>
-      createElement(
+    forwardRef<ElementRef<TTag>, JSX.IntrinsicElements[TTag] & TTWProps>((props, ref) => {
+      const filteredProps = Object.fromEntries(
+        Object.entries(props).filter(([key]): boolean => key.charAt(0) !== '$'),
+      ) as JSX.IntrinsicElements[TTag] & ObjectWithoutPrefixDollar<TTWProps>
+      return createElement(
         tag,
         {
-          ...props,
+          ...filteredProps,
           className:
             typeof template === 'function'
               ? clsx(template(props), props.className)
@@ -30,8 +33,8 @@ const templateTagFactory =
           ref,
         },
         props.children,
-      ),
-    )
+      )
+    })
 
 class Wrapper<T extends keyof JSX.IntrinsicElements> {
   // wrapped has no explicit return type so we can infer it
