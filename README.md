@@ -31,24 +31,24 @@ import tw from 'tw-tailwind'
 
 ## Features
 
-```js
-const Component = tw.div`flex items-center justify-center`
+```ts
+const sharedClasses = tw`border-red-500`
 ```
 
 ```js
+const Component = tw.div`flex items-center justify-center`
+
 const Component = tw(Button)`flex items-center justify-center`
 ```
 
 ```ts
 const Component = tw.div<{ $hasBorder: boolean }>`
   bg-red-500 
-  ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}
-`
-```
+  ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 
-```ts
 const Component = tw(Button)<{ $hasBorder: boolean }>`
-  bg-red-500 ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
+  bg-red-500 
+  ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 ```
 
 ```ts
@@ -64,20 +64,8 @@ const Component = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => [
 ])
 
 const Component = tw(Button)<{ $hasBorder: boolean }>`
-  bg-red-500 ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
-```
-
-```ts
-const Component = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof borderColors }>(
-  ({ $hasBorder, $borderColor }) => [
-    '!bg-red-500',
-    $hasBorder && ['border-2', borderColors[$borderColor]],
-  ],
-)
-```
-
-```ts
-const sharedClasses = tw`border-red-500`
+  bg-red-500 
+  ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 ```
 
 ## Example
