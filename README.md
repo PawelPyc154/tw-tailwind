@@ -36,17 +36,19 @@ const Component = tw.div`flex items-center justify-center`
 ```
 
 ```js
-const Component = tw(Button)`flex items-center justify-center
+const Component = tw(Button)`flex items-center justify-center`
 ```
 
 ```ts
-const Component = tw.div<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
-  $hasBorder && 'border-2 border-blue-500'}`
+const Component = tw.div<{ $hasBorder: boolean }>`
+  bg-red-500 
+  ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}
+`
 ```
 
 ```ts
-const Component = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
-  $hasBorder && 'border-2 border-blue-500'}`
+const Component = tw(Button)<{ $hasBorder: boolean }>`
+  bg-red-500 ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 ```
 
 ```ts
@@ -56,17 +58,17 @@ const Component = tw(Button)(() => ['bg-red-500'])
 ```
 
 ```ts
-const Example4 = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => [
+const Component = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => [
   'bg-red-500',
   $hasBorder && 'border-2 border-blue-500',
 ])
 
-const Example6 = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
-  $hasBorder && 'border-2 border-blue-500'}`
+const Component = tw(Button)<{ $hasBorder: boolean }>`
+  bg-red-500 ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 ```
 
 ```ts
-const Example8 = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof borderColors }>(
+const Component = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof borderColors }>(
   ({ $hasBorder, $borderColor }) => [
     '!bg-red-500',
     $hasBorder && ['border-2', borderColors[$borderColor]],
@@ -177,3 +179,4 @@ Install Tailwind CSS IntelliSense VSCode extension
     "typescriptreact": "javascript"
   },
 ```
+
