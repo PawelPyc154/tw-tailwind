@@ -22,7 +22,7 @@ export function templateComponentFactory<
 >(
   Element: ComponentType<PropsWithoutRef<TComponentProps> & RefAttributes<Ref>>,
 ): <TTWProps extends {}>(
-  template: TemplateStringsArray | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => ClassValue[]),
+  template: TemplateStringsArray | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => string | ClassValue[]),
   ...templateElements: ((props: PropsWithoutRef<TComponentProps> & TTWProps) => string | boolean | undefined | null)[]
 ) => React.ForwardRefExoticComponent<PropsWithoutRef<PropsWithoutRef<TComponentProps> & TTWProps> & RefAttributes<Ref>>
 

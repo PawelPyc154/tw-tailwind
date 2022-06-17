@@ -12,7 +12,7 @@ import { mergeArrays } from './mergeArrays'
 const templateTagFactory =
   <TTag extends keyof JSX.IntrinsicElements>(tag: TTag) =>
   <TTWProps extends {}>(
-    template: TemplateStringsArray | ((props: JSX.IntrinsicElements[TTag] & TTWProps) => ClassValue[]),
+    template: TemplateStringsArray | ((props: JSX.IntrinsicElements[TTag] & TTWProps) => string | ClassValue[]),
     ...templateElements: ((props: JSX.IntrinsicElements[TTag] & TTWProps) => string | boolean | undefined | null)[]
   ) => {
     const Component = forwardRef<ElementRef<TTag>, JSX.IntrinsicElements[TTag] & TTWProps>((props, ref) => {
