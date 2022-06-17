@@ -4,7 +4,7 @@ A lighter version of twin.macro that allows you to create tailwind react compone
 
 [![NPM version][npm-image]][npm-url]
 
-[npm-image]: http://img.shields.io/npm/v/tw-tailwind.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/tw-tailwind.svg
 [npm-url]: https://www.npmjs.com/package/tw-tailwind
 
 ## Install
