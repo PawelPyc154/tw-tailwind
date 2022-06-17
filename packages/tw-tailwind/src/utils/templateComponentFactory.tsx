@@ -66,6 +66,3 @@ export function templateComponentFactory<TComponentProps extends { className?: s
     return Component
   }
 }
-const test = { test: 'string', $test: 'test' }
-
-type Fruits = typeof test
