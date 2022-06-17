@@ -6,7 +6,11 @@ import Head from 'next/head'
 import tw from 'tw-tailwind'
 import clsx from 'clsx'
 
-const borderColors = { red: tw`border-red-500`, blue: tw`border-blue-500`, green: tw`border-green-500` }
+const borderColors = {
+  red: tw`border-red-500`,
+  blue: tw`border-blue-500`,
+  green: tw`border-green-500`,
+}
 const sharedClasses = tw`border-red-500`
 
 const Home: NextPage = () => (
@@ -40,22 +44,29 @@ export default Home
 
 const Example1 = tw.div`p-4 bg-red-500`
 
-const Example2 = tw.div<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) => ($hasBorder ? 'border-2 border-blue-500' : '')}`
+const Example2 = tw.div<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
+  $hasBorder ? 'border-2 border-blue-500' : ''}`
 
 const Example3 = tw.div(() => ['bg-red-500'])
 
-const Example4 = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => ['bg-red-500', $hasBorder && 'border-2 border-blue-500'])
+const Example4 = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => [
+  'bg-red-500',
+  $hasBorder && 'border-2 border-blue-500',
+])
 
 const Example5 = tw(Button)`bg-red-500`
 
-const Example6 = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
+const Example6 = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
+  $hasBorder && 'border-2 border-blue-500'}`
 
 const Example7 = tw(Button)(() => ['bg-red-500'])
 
-const Example8 = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof borderColors }>(({ $hasBorder, $borderColor }) => [
-  '!bg-red-500',
-  $hasBorder && ['border-2', borderColors[$borderColor]],
-])
+const Example8 = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof borderColors }>(
+  ({ $hasBorder, $borderColor }) => [
+    '!bg-red-500',
+    $hasBorder && ['border-2', borderColors[$borderColor]],
+  ],
+)
 
 const Example9 = tw(Button)`p-4 bg-red-500`
 

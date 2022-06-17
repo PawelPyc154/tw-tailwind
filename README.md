@@ -21,22 +21,6 @@ Using [yarn](https://classic.yarnpkg.com/en/package/tw-tailwind)
 yarn add tw-tailwind
 ```
 
-install Tailwind CSS IntelliSense VSCode extension
-
-## VS Code setup - extension
-
-[https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
-
-```json
-    "tw`([^`]*)", // tw`...`
-    "tw\\.[^`]+`([^`]*)", // tw.xxx`...`
-    "tw\\(.*?\\).*?`([^`]*)", // tw(Component)`...`
-    ["tw\\.[^\\)]+\\(.*=>([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"], // tw.xxx(()=> ['...'])
-    ["tw\\(.*?\\)\\(.*=>([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"], // tw(Component)(()=> ['...'])
-    ["tw\\(.*?\\).*?\\(.*=>([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"], // tw(Component)<...>(()=> ['...'])
-    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"] // clsx( ['...'])
-```
-
 # Usage
 
 ## Import
@@ -45,7 +29,7 @@ install Tailwind CSS IntelliSense VSCode extension
 import tw from 'tw-tailwind'
 ```
 
-## Basic
+## Features
 
 ```js
 const Component = tw.div`flex items-center justify-center`
@@ -56,11 +40,13 @@ const Component = tw(Button)`flex items-center justify-center
 ```
 
 ```ts
-const Component = tw.div<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
+const Component = tw.div<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
+  $hasBorder && 'border-2 border-blue-500'}`
 ```
 
 ```ts
-const Component = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
+const Component = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
+  $hasBorder && 'border-2 border-blue-500'}`
 ```
 
 ```ts
@@ -70,16 +56,22 @@ const Component = tw(Button)(() => ['bg-red-500'])
 ```
 
 ```ts
-const Example4 = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => ['bg-red-500', $hasBorder && 'border-2 border-blue-500'])
+const Example4 = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => [
+  'bg-red-500',
+  $hasBorder && 'border-2 border-blue-500',
+])
 
-const Example6 = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
+const Example6 = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
+  $hasBorder && 'border-2 border-blue-500'}`
 ```
 
 ```ts
-const Example8 = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof borderColors }>(({ $hasBorder, $borderColor }) => [
-  '!bg-red-500',
-  $hasBorder && ['border-2', borderColors[$borderColor]],
-])
+const Example8 = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof borderColors }>(
+  ({ $hasBorder, $borderColor }) => [
+    '!bg-red-500',
+    $hasBorder && ['border-2', borderColors[$borderColor]],
+  ],
+)
 ```
 
 ```ts
@@ -88,7 +80,7 @@ const sharedClasses = tw`border-red-500`
 
 ## Example
 
-# Button
+### Button
 
 ```js
 import tw from 'tw-tailwind'
@@ -122,7 +114,7 @@ const ButtonStyled = tw.button<{ $color: keyof typeof colors; $isLoading?: boole
 ])
 ```
 
-# Input
+### Input
 
 ```js
 import { forwardRef, ReactNode } from 'react'
@@ -138,15 +130,17 @@ type InputProps = Omit<JSX.IntrinsicElements['input'], 'ref'> & {
   className?: string
   color?: keyof typeof colors
 }
-export const Input = forwardRef<HTMLInputElement, InputProps>(({ label, className, icon, color = 'white', ...props }, ref) => (
-  <Container className={className}>
-    {label && <Label>{label}</Label>}
-    <Wrapper>
-      <InputStyled className={clsx([colors[color], !!icon && `pl-10 `])} {...props} ref={ref} />
-      <IconWrapper>{icon}</IconWrapper>
-    </Wrapper>
-  </Container>
-))
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, className, icon, color = 'white', ...props }, ref) => (
+    <Container className={className}>
+      {label && <Label>{label}</Label>}
+      <Wrapper>
+        <InputStyled className={clsx([colors[color], !!icon && `pl-10 `])} {...props} ref={ref} />
+        <IconWrapper>{icon}</IconWrapper>
+      </Wrapper>
+    </Container>
+  ),
+)
 
 Input.displayName = 'Input'
 
@@ -156,3 +150,30 @@ const Wrapper = tw.div`relative`
 const IconWrapper = tw.div`absolute text-xl h-10 px-3 flex justify-center items-center top-0 left-0`
 ```
 
+## VS Code setup - extension
+
+Install Tailwind CSS IntelliSense VSCode extension
+
+[https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+
+```js
+  "scss.validate": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.autoClosingQuotes": "always",
+  "tailwindCSS.experimental.classRegex": [
+    "tw`([^`]*)", // tw`...`
+    "tw\\.[^`]+`([^`]*)", // tw.xxx`...`
+    "tw\\(.*?\\).*?`([^`]*)", // tw(Component)`...`
+    ["tw\\.[^\\)]+\\(.*=>([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"], // tw.xxx(()=> ['...'])
+    ["tw\\(.*?\\)\\(.*=>([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"], // tw(Component)(()=> ['...'])
+    ["tw\\(.*?\\).*?\\(.*=>([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"], // tw(Component)<...>(()=> ['...'])
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"] // clsx( ['...'])
+  ],
+
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+```
