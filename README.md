@@ -142,7 +142,7 @@ const Wrapper = tw.div`relative`
 const IconWrapper = tw.div`absolute text-xl h-10 px-3 flex justify-center items-center top-0 left-0`
 ```
 
-## VS Code setup - extension
+## VS Code IntelliSense
 
 Install "Tailwind CSS IntelliSense" VSCode - extension for autocomplete
 

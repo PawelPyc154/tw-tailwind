@@ -23,6 +23,20 @@
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
+  "keywords": [
+    "twin.macro",
+    "emotion",
+    "styled-components",
+    "tailwind",
+    "tailwindcss",
+    "css-in-js",
+    "react",
+    "css",
+    "tailwindcss-plugin",
+    "tailwind-css",
+    "tailwindcss-ui",
+    "Tailwind CSS"
+  ],
   "dependencies": {},
   "packageManager": "yarn@1.22.19"
 }
