@@ -25,7 +25,8 @@
     "css",
     "tailwindcss-plugin",
     "tailwind-css",
-    "tailwindcss-ui"
+    "tailwindcss-ui",
+    "Tailwind CSS"
   ],
   "author": "Paweł Pyc",
   "license": "MIT",

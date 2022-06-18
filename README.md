@@ -21,15 +21,17 @@ Using [yarn](https://classic.yarnpkg.com/en/package/tw-tailwind)
 yarn add tw-tailwind
 ```
 
-# Usage
+⚠️ _Tw-Tailwind requires TailwindCSS to be installed and configured on your project too. [Install TailwindCSS](https://tailwindcss.com/docs/installation)_
 
-## Import
+## Usage
+
+### Import
 
 ```js
 import tw from 'tw-tailwind'
 ```
 
-## Features
+### Features
 
 ```ts
 const sharedClasses = tw`border-red-500`
@@ -142,11 +144,13 @@ const IconWrapper = tw.div`absolute text-xl h-10 px-3 flex justify-center items-
 
 ## VS Code setup - extension
 
-Install Tailwind CSS IntelliSense VSCode extension
+Install "Tailwind CSS IntelliSense" VSCode - extension for autocomplete
 
 [https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
 ```js
+  // vs code setting.json
+
   "scss.validate": false,
   "editor.quickSuggestions": {
     "strings": true
