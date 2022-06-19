@@ -3,7 +3,7 @@ import tw from 'tw-tailwind'
 import { Label } from './label'
 import clsx from 'clsx'
 
-const colors = { white: tw` bg-white`, gray: tw`bg-gray-200` }
+const colors = { white: tw`bg-white`, gray: tw`bg-gray-200` }
 
 type InputProps = Omit<JSX.IntrinsicElements['input'], 'ref'> & {
   label?: string

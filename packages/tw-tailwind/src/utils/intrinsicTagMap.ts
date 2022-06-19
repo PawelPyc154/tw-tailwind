@@ -22,7 +22,7 @@ const templateTagFactory =
     const Component = forwardRef<ElementRef<TTag>, JSX.IntrinsicElements[TTag] & TTWProps>(
       (props, ref) => {
         const filteredProps = Object.fromEntries(
-          Object.entries(props).filter(([key]): boolean => key.charAt(0) !== '$'),
+          Object.entries(props).filter(([key]) => key.charAt(0) !== '$'),
         ) as JSX.IntrinsicElements[TTag] & ObjectWithoutPrefixDollar<TTWProps>
         return createElement(
           tag,

@@ -22,26 +22,41 @@ export function templateComponentFactory<
 >(
   Element: ComponentType<PropsWithoutRef<TComponentProps> & RefAttributes<Ref>>,
 ): <TTWProps extends {}>(
-  template: TemplateStringsArray | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => string | ClassValue[]),
-  ...templateElements: ((props: PropsWithoutRef<TComponentProps> & TTWProps) => string | boolean | undefined | null)[]
-) => React.ForwardRefExoticComponent<PropsWithoutRef<PropsWithoutRef<TComponentProps> & TTWProps> & RefAttributes<Ref>>
+  template:
+    | TemplateStringsArray
+    | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => string | ClassValue[]),
+  ...templateElements: ((
+    props: PropsWithoutRef<TComponentProps> & TTWProps,
+  ) => string | boolean | undefined | null)[]
+) => React.ForwardRefExoticComponent<
+  PropsWithoutRef<PropsWithoutRef<TComponentProps> & TTWProps> & RefAttributes<Ref>
+>
 
 export function templateComponentFactory(Element: ReadonlyArray<string>): string
 
-export function templateComponentFactory<TComponentProps extends { className?: string }, Ref = never>(
-  Element: React.ComponentType<PropsWithoutRef<TComponentProps> & RefAttributes<Ref>> | ReadonlyArray<string>,
+export function templateComponentFactory<
+  TComponentProps extends { className?: string },
+  Ref = never,
+>(
+  Element:
+    | React.ComponentType<PropsWithoutRef<TComponentProps> & RefAttributes<Ref>>
+    | ReadonlyArray<string>,
 ) {
   if (Array.isArray(Element)) {
     return twMerge(Element[0])
   }
 
   return <TTWProps extends {}>(
-    template: TemplateStringsArray | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => ClassValue[]),
-    ...templateElements: ((props: PropsWithoutRef<TComponentProps> & TTWProps) => string | boolean | undefined | null)[]
+    template:
+      | TemplateStringsArray
+      | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => ClassValue[]),
+    ...templateElements: ((
+      props: PropsWithoutRef<TComponentProps> & TTWProps,
+    ) => string | boolean | undefined | null)[]
   ) => {
     const Component = forwardRef<Ref, PropsWithoutRef<TComponentProps> & TTWProps>((props, ref) => {
       const filteredProps = Object.fromEntries(
-        Object.entries(props).filter(([key]): boolean => key.charAt(0) !== '$'),
+        Object.entries(props).filter(([key]) => key.charAt(0) !== '$'),
       ) as PropsWithoutRef<TComponentProps> & ObjectWithoutPrefixDollar<TTWProps>
 
       return (
