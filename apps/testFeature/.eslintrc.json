@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
+  "globals": {
+    "React": "readonly"
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "import/prefer-default-export": "off",
+    "react/function-component-definition": "off",
+    "import/no-unresolved": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-use-before-define": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/require-default-props": "off",
+    "react/prop-types": "off",
+    "no-undef": "off",
+    "import/extensions": "off",
+    "consistent-return": "off",
+    "react/self-closing-comp": "error",
+    "arrow-body-style": "error",
+    "prefer-template": "error"
+  }
+}
