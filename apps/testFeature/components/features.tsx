@@ -66,8 +66,8 @@ export const Div3Test = () => {
   )
 }
 
-export const Div4 = tw.div<{ isLoading: boolean }>`bg-slate-600 ${({ isLoading }) =>
-  isLoading && 'border-2 boroder'}`
+export const Div4 = tw.div<{ isLoading: boolean }>`bg-slate-600 ${'text-red-200'} 
+ ${({ isLoading }) => isLoading && 'border-2 boroder'}`
 export const Div4Test = () => {
   const ref = useRef<HTMLDivElement>(null)
   const refSpan = useRef<HTMLSpanElement>(null)
@@ -83,8 +83,8 @@ export const Div4Test = () => {
   )
 }
 
-export const Div5 = tw(Div1)<{ isLoading: boolean }>`bg-slate-600 ${({ isLoading }) =>
-  isLoading && 'border-2 boroder'}`
+export const Div5 = tw(Div1)<{ isLoading: boolean }>`bg-slate-600 ${'text-red-200'} 
+${({ isLoading }) => isLoading && 'border-2 boroder'}`
 export const Div5Test = () => {
   const ref = useRef<HTMLDivElement>(null)
   const refSpan = useRef<HTMLSpanElement>(null)
@@ -100,8 +100,8 @@ export const Div5Test = () => {
   )
 }
 
-export const Div6 = tw(ClassName)`bg-slate-600 ${({ isLoading }) =>
-  isLoading && 'border-2 boroder'}`
+export const Div6 = tw(ClassName)`bg-slate-600 ${'text-red-200'} 
+${({ isLoading }) => isLoading && 'border-2 boroder'}`
 export const Div6Test = () => {
   const ref = useRef<HTMLDivElement>(null)
   const refSpan = useRef<HTMLSpanElement>(null)

@@ -9,15 +9,18 @@ import { ObjectWithoutPrefixDollar } from '../types/objectWithoutPrefixDollar'
 import { cleanTemplate } from './cleanTemplate'
 import { mergeArrays } from './mergeArrays'
 
+type TemplateElementsReturn = string | boolean | undefined | null
+
 const templateTagFactory =
   <TTag extends keyof JSX.IntrinsicElements>(tag: TTag) =>
   <TTWProps extends {}>(
     template:
       | TemplateStringsArray
       | ((props: JSX.IntrinsicElements[TTag] & TTWProps) => string | ClassValue[]),
-    ...templateElements: ((
-      props: JSX.IntrinsicElements[TTag] & TTWProps,
-    ) => string | boolean | undefined | null)[]
+    ...templateElements: (
+      | ((props: JSX.IntrinsicElements[TTag] & TTWProps) => TemplateElementsReturn)
+      | TemplateElementsReturn
+    )[]
   ) => {
     const Component = forwardRef<ElementRef<TTag>, JSX.IntrinsicElements[TTag] & TTWProps>(
       (props, ref) => {
@@ -34,7 +37,7 @@ const templateTagFactory =
                 : cleanTemplate(
                     mergeArrays(
                       template,
-                      templateElements.map((t) => t(props)),
+                      templateElements.map((t) => (typeof t === 'function' ? t(props) : t)),
                     ),
                     props.className,
                   ),

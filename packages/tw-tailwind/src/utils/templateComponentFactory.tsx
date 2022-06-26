@@ -14,6 +14,8 @@ declare global {
   }
 }
 
+type TemplateElementsReturn = string | boolean | undefined | null
+
 export function templateComponentFactory<
   TComponentProps extends {
     className?: string
@@ -25,9 +27,10 @@ export function templateComponentFactory<
   template:
     | TemplateStringsArray
     | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => string | ClassValue[]),
-  ...templateElements: ((
-    props: PropsWithoutRef<TComponentProps> & TTWProps,
-  ) => string | boolean | undefined | null)[]
+  ...templateElements: (
+    | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => TemplateElementsReturn)
+    | TemplateElementsReturn
+  )[]
 ) => React.ForwardRefExoticComponent<
   PropsWithoutRef<PropsWithoutRef<TComponentProps> & TTWProps> & RefAttributes<Ref>
 >
@@ -50,9 +53,10 @@ export function templateComponentFactory<
     template:
       | TemplateStringsArray
       | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => ClassValue[]),
-    ...templateElements: ((
-      props: PropsWithoutRef<TComponentProps> & TTWProps,
-    ) => string | boolean | undefined | null)[]
+    ...templateElements: (
+      | ((props: PropsWithoutRef<TComponentProps> & TTWProps) => TemplateElementsReturn)
+      | TemplateElementsReturn
+    )[]
   ) => {
     const Component = forwardRef<Ref, PropsWithoutRef<TComponentProps> & TTWProps>((props, ref) => {
       const filteredProps = Object.fromEntries(
@@ -68,7 +72,7 @@ export function templateComponentFactory<
               : cleanTemplate(
                   mergeArrays(
                     template,
-                    templateElements.map((t) => t(props)),
+                    templateElements.map((t) => (typeof t === 'function' ? t(props) : t)),
                   ),
                   props.className,
                 )
