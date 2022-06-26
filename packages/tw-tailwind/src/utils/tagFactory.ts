@@ -1,7 +1,6 @@
-'use strict'
-
 /* eslint-disable no-redeclare */
 /* eslint-disable no-unused-vars */
+
 import clsx, { ClassValue } from 'clsx'
 import { forwardRef, ElementRef, createElement } from 'react'
 import tags from '../tags'
@@ -11,7 +10,7 @@ import { mergeArrays } from './mergeArrays'
 
 type TemplateElementsReturn = string | boolean | undefined | null
 
-const templateTagFactory =
+export const tagFactory =
   <TTag extends keyof JSX.IntrinsicElements>(tag: TTag) =>
   <TTWProps extends {}>(
     template:
@@ -50,21 +49,3 @@ const templateTagFactory =
     Component.displayName = `tw.${tag}`
     return Component
   }
-
-class Wrapper<T extends keyof JSX.IntrinsicElements> {
-  // wrapped has no explicit return type so we can infer it
-  wrapped(e: T) {
-    return templateTagFactory<T>(e)
-  }
-}
-type IntrinsicElementsTemplateFunctionsMap = {
-  [Key in keyof JSX.IntrinsicElements]: ReturnType<Wrapper<Key>['wrapped']>
-}
-
-export const intrinsicTagMap = tags.reduce(
-  (acc, tag: keyof JSX.IntrinsicElements) => ({
-    ...acc,
-    [tag]: templateTagFactory(tag),
-  }),
-  {} as IntrinsicElementsTemplateFunctionsMap,
-)

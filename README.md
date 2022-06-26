@@ -44,11 +44,14 @@ const Component = tw(Button)`flex items-center justify-center`
 ```
 
 ```ts
-const Component = tw.div<{ $hasBorder: boolean }>`
+interface Props {
+  $hasBorder: boolean
+}
+const Component = tw.div<Props>`
   bg-red-500 
   ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 
-const Component = tw(Button)<{ $hasBorder: boolean }>`
+const Component = tw(Button)<Props>`
   bg-red-500 
   ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 ```
@@ -60,12 +63,15 @@ const Component = tw(Button)(() => ['bg-red-500'])
 ```
 
 ```ts
-const Component = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => [
+interface Props {
+  $hasBorder: boolean
+}
+const Component = tw.div<Props>(({ $hasBorder }) => [
   'bg-red-500',
   $hasBorder && 'border-2 border-blue-500',
 ])
 
-const Component = tw(Button)<{ $hasBorder: boolean }>`
+const Component = tw(Button)<Props>`
   bg-red-500 
   ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 ```

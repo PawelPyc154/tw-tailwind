@@ -16,7 +16,7 @@ declare global {
 
 type TemplateElementsReturn = string | boolean | undefined | null
 
-export function templateComponentFactory<
+export function componentFactory<
   TComponentProps extends {
     className?: string
   },
@@ -35,12 +35,9 @@ export function templateComponentFactory<
   PropsWithoutRef<PropsWithoutRef<TComponentProps> & TTWProps> & RefAttributes<Ref>
 >
 
-export function templateComponentFactory(Element: ReadonlyArray<string>): string
+export function componentFactory(Element: ReadonlyArray<string>): string
 
-export function templateComponentFactory<
-  TComponentProps extends { className?: string },
-  Ref = never,
->(
+export function componentFactory<TComponentProps extends { className?: string }, Ref = never>(
   Element:
     | React.ComponentType<PropsWithoutRef<TComponentProps> & RefAttributes<Ref>>
     | ReadonlyArray<string>,

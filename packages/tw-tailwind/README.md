@@ -4,7 +4,7 @@ A lighter version of twin.macro that allows you to create tailwind react compone
 
 [![NPM version][npm-image]][npm-url]
 
-[npm-image]: http://img.shields.io/npm/v/tw-tailwind.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/tw-tailwind.svg
 [npm-url]: https://www.npmjs.com/package/tw-tailwind
 
 ## Install
@@ -21,32 +21,39 @@ Using [yarn](https://classic.yarnpkg.com/en/package/tw-tailwind)
 yarn add tw-tailwind
 ```
 
-# Usage
+⚠️ _Tw-Tailwind requires TailwindCSS to be installed and configured on your project too. [Install TailwindCSS](https://tailwindcss.com/docs/installation)_
 
-## Import
+## Usage
+
+### Import
 
 ```js
 import tw from 'tw-tailwind'
 ```
 
-## Features
+### Features
+
+```ts
+const sharedClasses = tw`border-red-500`
+```
 
 ```js
 const Component = tw.div`flex items-center justify-center`
-```
 
-```js
-const Component = tw(Button)`flex items-center justify-center
-```
-
-```ts
-const Component = tw.div<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
-  $hasBorder && 'border-2 border-blue-500'}`
+const Component = tw(Button)`flex items-center justify-center`
 ```
 
 ```ts
-const Component = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
-  $hasBorder && 'border-2 border-blue-500'}`
+interface Props {
+  $hasBorder: boolean
+}
+const Component = tw.div<Props>`
+  bg-red-500 
+  ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
+
+const Component = tw(Button)<Props>`
+  bg-red-500 
+  ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 ```
 
 ```ts
@@ -56,26 +63,17 @@ const Component = tw(Button)(() => ['bg-red-500'])
 ```
 
 ```ts
-const Component = tw.div<{ $hasBorder: boolean }>(({ $hasBorder }) => [
+interface Props {
+  $hasBorder: boolean
+}
+const Component = tw.div<Props>(({ $hasBorder }) => [
   'bg-red-500',
   $hasBorder && 'border-2 border-blue-500',
 ])
 
-const Component = tw(Button)<{ $hasBorder: boolean }>`bg-red-500 ${({ $hasBorder }) =>
-  $hasBorder && 'border-2 border-blue-500'}`
-```
-
-```ts
-const Component = tw(Button)<{ $hasBorder: boolean; $borderColor: keyof typeof borderColors }>(
-  ({ $hasBorder, $borderColor }) => [
-    '!bg-red-500',
-    $hasBorder && ['border-2', borderColors[$borderColor]],
-  ],
-)
-```
-
-```ts
-const sharedClasses = tw`border-red-500`
+const Component = tw(Button)<Props>`
+  bg-red-500 
+  ${({ $hasBorder }) => $hasBorder && 'border-2 border-blue-500'}`
 ```
 
 ## Example
@@ -150,13 +148,15 @@ const Wrapper = tw.div`relative`
 const IconWrapper = tw.div`absolute text-xl h-10 px-3 flex justify-center items-center top-0 left-0`
 ```
 
-## VS Code setup - extension
+## VS Code IntelliSense
 
-Install Tailwind CSS IntelliSense VSCode extension
+Install "Tailwind CSS IntelliSense" VSCode - extension for autocomplete
 
 [https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
 ```js
+  // vs code setting.json
+
   "scss.validate": false,
   "editor.quickSuggestions": {
     "strings": true
