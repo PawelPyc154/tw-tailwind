@@ -3,11 +3,10 @@
 
 import clsx, { ClassValue } from 'clsx'
 import { forwardRef, ElementRef, createElement } from 'react'
-import tags from '../tags'
 import { ObjectWithoutPrefixDollar } from '../types/objectWithoutPrefixDollar'
 import { cleanTemplate } from './cleanTemplate'
 import { mergeArrays } from './mergeArrays'
-
+import { twMerge } from 'tailwind-merge'
 type TemplateElementsReturn = string | boolean | undefined | null
 
 export const tagFactory =
@@ -32,7 +31,7 @@ export const tagFactory =
             ...filteredProps,
             className:
               typeof template === 'function'
-                ? clsx(template(props), props.className)
+                ? twMerge(clsx(template(props), props.className))
                 : cleanTemplate(
                     mergeArrays(
                       template,

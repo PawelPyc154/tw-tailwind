@@ -65,7 +65,7 @@ export function componentFactory<TComponentProps extends { className?: string },
           {...filteredProps}
           className={
             typeof template === 'function'
-              ? clsx(template(props), props.className)
+              ? twMerge(clsx(template(props), props.className))
               : cleanTemplate(
                   mergeArrays(
                     template,
