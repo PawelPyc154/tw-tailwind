@@ -1,4 +1,4 @@
-const elementsArray: (keyof JSX.IntrinsicElements)[] = [
+export const tags: (keyof JSX.IntrinsicElements)[] = [
   'a',
   'abbr',
   'address',
@@ -134,5 +134,3 @@ const elementsArray: (keyof JSX.IntrinsicElements)[] = [
   'text',
   'tspan',
 ]
-
-export default elementsArray
