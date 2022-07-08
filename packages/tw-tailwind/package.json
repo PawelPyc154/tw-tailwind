@@ -36,7 +36,6 @@
   "bugs": {
     "url": "https://github.com/PawelPyc154/tw-tailwind/issues"
   },
-  "readme": "https://github.com/PawelPyc154/tw-tailwind#readme",
   "homepage": "https://github.com/PawelPyc154/tw-tailwind#readme",
   "dependencies": {
     "clsx": "^1.1.1",
