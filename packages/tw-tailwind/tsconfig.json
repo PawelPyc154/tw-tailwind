@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
     "target": "es2019",
-    "module": "commonjs",
-    "lib": ["esnext", "DOM"],
-    "moduleResolution": "node",
+    "module": "Node16",
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
+    "moduleResolution": "node16",
     "declaration": true,
     "sourceMap": true,
     "outDir": "./dist",
@@ -11,11 +14,18 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "alwaysStrict": true,
-    "rootDirs": ["./src"],
+    "rootDirs": [
+      "./src"
+    ],
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": ["src"],
-
-  "exclude": ["node_modules", "dist", "test"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test"
+  ]
 }
