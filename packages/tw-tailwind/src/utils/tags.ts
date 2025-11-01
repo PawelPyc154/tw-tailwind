@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 export const tags: (keyof JSX.IntrinsicElements)[] = [
 	"a",
 	"abbr",

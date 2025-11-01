@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/display-name */
 
+import type { JSX } from "react";
 import { componentFactory } from "./utils/componentFactory";
 import { tagFactory } from "./utils/tagFactory";
 import { tags } from "./utils/tags";

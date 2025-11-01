@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import clsx, { type ClassValue } from "clsx";
-import { createElement, type ElementRef, forwardRef } from "react";
+import { createElement, type JSX } from "react";
 import { twMerge } from "tailwind-merge";
 import type { ObjectWithoutPrefixDollar } from "../types/objectWithoutPrefixDollar";
 import { cleanTemplate } from "./cleanTemplate";
@@ -25,10 +25,7 @@ export const tagFactory =
 			| TemplateElementsReturn
 		)[]
 	) => {
-		const Component = forwardRef<
-			ElementRef<TTag>,
-			JSX.IntrinsicElements[TTag] & TTWProps
-		>((props, ref) => {
+		const Component = (props: JSX.IntrinsicElements[TTag] & TTWProps) => {
 			const filteredProps = Object.fromEntries(
 				Object.entries(props).filter(([key]) => key.charAt(0) !== "$"),
 			) as JSX.IntrinsicElements[TTag] & ObjectWithoutPrefixDollar<TTWProps>;
@@ -48,11 +45,10 @@ export const tagFactory =
 									),
 									props.className,
 								),
-					ref,
 				},
 				props.children,
 			);
-		});
+		};
 		Component.displayName = `tw.${tag}`;
 		return Component;
 	};
